@@ -53,7 +53,7 @@
                         </li>
                         <li>
                             <button type="submit">Submit</button>
-                            <button type="activate" onclick="testfunction()">Activate</button>
+                            <button type="activate" onclick="testFunction()">Activate</button>
                         </li>
                     </ul>
                 </form>
@@ -64,7 +64,11 @@
                 fetch('/api')
                 .then((response) => response.text())
                 .then((response) => {
-                    console.log(response);
+                    const mainHeader = document.querySelector('h1')
+                    const pageTitle = document.querySelector('title')
+                    mainHeader.innerHTML = response;
+                    pageTitle.innerHTML = response;
+                    
                 })
             }
         </script>
