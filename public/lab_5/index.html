@@ -1,94 +1,109 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <link href="styles.css" rel="stylesheet">
-        <title>
-            Jared Woodard Lab 4
-        </title>
-    </head>
-    <body>
-        <div>
-            <div>
-                <div class="header">
-                    <h1>Jared Woodard Lab 4</h1>
-                </div>
-                <form action="/api" method="post">
-                    <ul class="flex-outer">
-                        <li>
-                            <label for="fname">First Name</label>
-                            <input type="text" id="fname" maxlength="140" placeholder="Enter your first name here...">
-                        </li>
-                        <li>
-                            <label for="lname">Last Name</label>
-                            <input type="text" id="lname" maxlength="140" placeholder="Enter your last name here...">
-                        </li>
-                        <li>
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="Enter your email here...">
-                        </li>
-                        <li>
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" placeholder="Enter your phone number here...">
-                        </li>
-                        <li>
-                            <label for="message">Message</label>
-                            <textarea rows="5" cols="33" id="message" name = "message" placeholder="Enter your message here..."></textarea>
-                        </li>
-                        <li>
-                            <p class="checkbox-list-label">Age</p>
-                            <ul class="flex-inner">
-                                <li>
-                                    <input type="checkbox" id="eightteen-to-thirtyfive">
-                                    <label for="eightteen-to-thirtyfive">18-35</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="thirtyfive-to-fifty">
-                                    <label for="thirtyfive-to-fifty">35-50</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="fifty-to-sixtyfive">
-                                    <label for="fifty-to-sixtyfive">50-65</label>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <button type="submit">Submit</button>
-                            <button type="activate" onclick="testFunction()">Activate</button>
-                        </li>
-                    </ul>
-                </form>
-            </div>
+<html lang="en">
+  <head>
+    <title>Jared Woodard's Lab 4</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="header">
+          <h1>Jared Woodard's Lab 4</h1>
         </div>
-        <script>
-            function testFunction() {
-                fetch('/api')
-                .then((response) => response.text())
-                .then((response) => {
-                    // Part 10
-                    const mainHeader = document.querySelector('h1')
-                    const pageTitle = document.querySelector('title')
-                    mainHeader.innerHTML = response;
-                    pageTitle.innerHTML = response;
+        <form action="/api" method="post">
+          <ul class="flex-outer">
+            <li>
+              <label for="fname">First Name</label>
+              <input type="text" name="first-name" id="fname" />
+            </li>
+            <li>
+              <label for="lname">Last Name</label>
+              <input type="text" name="last-name" id="lname" />
+            </li>
+            <li>
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" />
+            </li>
+            <li>
+              <label for="phone">Phone</label>
+              <input type="tel" name="phone" id="phone" />
+            </li>
+            <li>
+              <label for="message">Text field</label>
+              <textarea name="message" id="message" cols="33" rows="10">
+This is some default message text.</textarea
+              >
+            </li>
+            <li>
+              <p class = "checkbox-list-label">Age</p>
+              <ul class="flex-inner">
+                <li>
+                  <input type="checkbox" id="eighteen-thirtyfive" name="age" />
+                  <label for="eighteen-thirtyfive">18-35</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="thirtyfive-fifty" name="age" />
+                  <label for="thirtyfive-fifty">35-50</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="fifty-sixtyfive" name="age" />
+                  <label for="fifty-sixtyfive">50-65</label>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <button id="submit_button" name="submit_button" type="submit">
+                Submit form
+              </button>
+            </li>
+            <li>
+              <button
+                class="button-activate"
+                id="button-activate"
+                name="button-activate"
+                type="submit"
+              >
+                Activate
+              </button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+    <script>
+      const btn = document.querySelector(".button-activate");
+      btn.onclick = testFunction;
+      function testFunction() {
+        fetch("/api")
+          .then((response) => response.text())
+          .then((response) => {
+            // Part 10
+            const mainHeader = document.querySelector("h1");
+            const pageTitle = document.querySelector("title");
+            mainHeader.innerHTML = response;
+            pageTitle.innerHTML = response;
 
-                    // Part 11
-                    const BodyColor = "rgb(" + 255 + "," + 0 + "," + 0 + ")"
-                    document.body.style.backgroundColor = BodyColor;
+            // Part 11
+            const BodyColor = "rgb(" + 255 + "," + 0 + "," + 0 + ")";
+            document.body.style.backgroundColor = BodyColor;
 
-                    // Part 12
-                    const element = document.getElementsByClassName(".flex-outer")
-                    element.style = "margin: auto;";
+            // Part 12
+            const element = document.querySelector(".flex-outer");
+            element.style = "margin: 0 auto;";
 
-                    //part 13
-                    const ListLabel = document.querySelector('.checkbox-list-label');
-                    ListLabel.innerHTML = "<p>Fruits</p>";
+            //part 13
+            const ListLabel = document.querySelector(".checkbox-list-label");
+            ListLabel.innerHTML = "Fruits";
 
-                    const FruitArray = ['Apple', 'Pear', 'Tomato'];
-                    const ListElements = document.querySelectorAll('.flex-inner > li > label');
-                    ListElements.forEach((element, i) => {
-                        element.innerText = FruitArray[i];
-                    })
-                })
-            }
-        </script>
-    </body>
+            const FruitArray = ["Apple", "Pear", "Tomato"];
+            const ListElements = document.querySelectorAll(
+              ".flex-inner > li > label"
+            );
+            ListElements.forEach((element, i) => {
+              element.innerText = FruitArray[i];
+            });
+          });
+      }
+    </script>
+  </body>
 </html>
