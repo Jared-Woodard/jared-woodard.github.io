@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang = "en">
     <head>
-        <link href="style.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
         <title>
-            Jared Woodard Lab 5
+            Jared Woodard Lab 4
         </title>
     </head>
     <body>
         <div>
             <div>
                 <div class="header">
-                    <h1>Jared Woodard Lab 5</h1>
+                    <h1>Jared Woodard Lab 4</h1>
                 </div>
                 <form action="/api" method="post">
                     <ul class="flex-outer">
                         <li>
-                            <label for="first-name">First Name</label>
-                            <input type="text" id="first-name" maxlength="140" placeholder="Enter your first name here...">
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" maxlength="140" placeholder="Enter your first name here...">
                         </li>
                         <li>
-                            <label for="last-name">Last Name</label>
-                            <input type="text" id="last-name" maxlength="140" placeholder="Enter your last name here...">
+                            <label for="lname">Last Name</label>
+                            <input type="text" id="lname" maxlength="140" placeholder="Enter your last name here...">
                         </li>
                         <li>
                             <label for="email">Email</label>
@@ -32,7 +32,7 @@
                         </li>
                         <li>
                             <label for="message">Message</label>
-                            <textarea rows="5" cols="33" id="message" placeholder="Enter your message here..."></textarea>
+                            <textarea rows="5" cols="33" id="message" name = "message" placeholder="Enter your message here..."></textarea>
                         </li>
                         <li>
                             <p class="checkbox-list-label">Age</p>
@@ -64,11 +64,29 @@
                 fetch('/api')
                 .then((response) => response.text())
                 .then((response) => {
+                    // Part 10
                     const mainHeader = document.querySelector('h1')
                     const pageTitle = document.querySelector('title')
                     mainHeader.innerHTML = response;
                     pageTitle.innerHTML = response;
-                    
+
+                    // Part 11
+                    const BodyColor = "rgb(" + 255 + "," + 0 + "," + 0 + ")"
+                    document.body.style.backgroundColor = BodyColor;
+
+                    // Part 12
+                    const element = document.getElementsByClassName(".flex-outer")
+                    element.style = "margin: auto;";
+
+                    //part 13
+                    const ListLabel = document.querySelector('.checkbox-list-label');
+                    ListLabel.innerHTML = "<p>Fruits</p>";
+
+                    const FruitArray = ['Apple', 'Pear', 'Tomato'];
+                    const ListElements = document.querySelectorAll('.flex-inner > li > label');
+                    ListElements.forEach((element, i) => {
+                        element.innerText = FruitArray[i];
+                    })
                 })
             }
         </script>
