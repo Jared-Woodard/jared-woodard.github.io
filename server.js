@@ -25,8 +25,7 @@ app.route('/api')
     res.send(`Lab 5 for ${process.env.NAME}`);
   })
   .post((req, res) => {
-    console.log('POST request detected');
-    console.log('Form data in res.body', req.body);
+    res.json(countries);
   });
 
 app.listen(port, () => {
