@@ -8,6 +8,7 @@ function range(int) {
   return arr;
 }
 
+// sortFucntion(b, a) <- decending sort 
 function sortFunction(a, b, key) {
   if (a[key] < b[key]) {
     return -1;
@@ -15,6 +16,13 @@ function sortFunction(a, b, key) {
     return 1;
   }
   return 0;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+function map(s1, s2) {
+  return (`${s1} ${s2}`);
 }
 
 document.body.addEventListener('submit', async (e) => {
@@ -29,7 +37,10 @@ document.body.addEventListener('submit', async (e) => {
   })
     .then((fromServer) => fromServer.json())
     .then((fromServer) => {
-      // You're going to do your lab work in here. Replace this comment.
+
+      // const arr10 = range(10); // = [1, 2, 3...]
+      // const reverseist = newArr2.sort((a, b) => sortFunction(b, a, 'name)); // sort
+      console.log(typeof fromServer);
       console.log('Test')
       console.log('fromServer', fromServer);
     })
