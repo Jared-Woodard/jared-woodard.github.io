@@ -1,5 +1,7 @@
 // You may wish to find an effective randomizer function on MDN.
 
+const { forEach } = require("cypress/types/lodash");
+
 function range(int) {
   const arr = [];
   for (let i = 0; i < int; i += 1) {
@@ -37,12 +39,26 @@ document.body.addEventListener('submit', async (e) => {
   })
     .then((fromServer) => fromServer.json())
     .then((fromServer) => {
+      const arr10 = range(10); // = [1, 2, 3...]
+      const arr = arr10.map(() => {
+        const number = getRandomInt(0, 243);
+        return fromServer[number];
+      })
+      /*
+      arr10.forEach((el, i) => {
+        arr10 = arr10.map(() => {
+          const number = getRandomInt(0, 243);
+          return fromServer[number];
+        })
+      }) */
+      const reverseist = arr.sort((a, b) => sortFunction(b, a, 'name')); // sort
+      const ul = document.createElement("ul");
+      ul.className = ".flex-inner";
+      $("form").append(ul);
 
-      // const arr10 = range(10); // = [1, 2, 3...]
-      // const reverseist = newArr2.sort((a, b) => sortFunction(b, a, 'name)); // sort
-      console.log(typeof fromServer);
-      console.log('Test')
-      console.log('fromServer', fromServer);
+      console.log(arr);
+      console.log('Test');
+
     })
     .catch((err) => console.log(err));
 });
