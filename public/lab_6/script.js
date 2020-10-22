@@ -56,13 +56,17 @@ document.body.addEventListener('submit', async (e) => {
 
       reverselist.forEach((element, i) => {
         const li = document.createElement('li');
-        li.innerHTML = '<input type = "checkbox"/>';
+        $(li).append(`<input type = "checkbox" value =${element.code} id = ${element.code} />`)
+        $(li).append(`<label for = ${element.code}> ${element.name}</label>`)
+        
+        // This is what I was doing before and it mostly worked.
+        /* li.innerHTML = '<input type = "checkbox"/>';
         li.setAttribute('value', element.code);
         li.id = element.code;
         const liLab = document.createElement('label');
         liLab.id = element.code;
         liLab.innerHTML = element.name;
-        li.append(liLab);
+        li.append(liLab); */
         $(ol).append(li);
       });
       console.log(arr);
