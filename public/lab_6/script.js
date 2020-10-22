@@ -40,25 +40,30 @@ document.body.addEventListener('submit', async (e) => {
   })
     .then((fromServer) => fromServer.json())
     .then((fromServer) => {
+      // Supposed to remove Ol
       if (document.querySelector('.flex-inner')) {
         document.querySelector('.flex-inner').remove();
-        console.log('If Statement')
       };
       const arr10 = range(10); // = [1, 2, 3...];
       const arr = arr10.map(() => {
         const number = getRandomInt(243);
         return fromServer[number];
       });
-      const reverseist = arr.sort((a, b) => sortFunction(b, a, 'name')); // sort
+      const reverselist = arr.sort((a, b) => sortFunction(b, a, 'name')); // sort
       const ol = document.createElement('ol');
-      ol.className = '.flex-inner';
+      ol.className = 'flex-inner';
       $('form').append(ol);
 
-      reverseist.forEach((element, i) => {
+      reverselist.forEach((element, i) => {
         const li = document.createElement('li');
-        $(li).append('<input type = "checkbox" value =${element.code} id =${element.code}/>');
-        $(li).append('<label for =${element.code}>${element.name}</label>');
-        $(ul).append(li);
+        li.innerHTML = '<input type = "checkbox"/>';
+        li.setAttribute('value', element.code);
+        li.id = element.code;
+        const liLab = document.createElement('label');
+        liLab.id = element.code;
+        liLab.innerHTML = element.name;
+        li.append(liLab);
+        $(ol).append(li);
       });
       console.log(arr);
       console.log('Test');
