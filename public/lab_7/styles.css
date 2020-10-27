@@ -84,7 +84,7 @@ h1 {
   margin: 20px 50px;
   padding: 0 20px;
   min-height: 75px;
-  background-color: darkolivegreen;
+  background-color: darkcyan;
   color: white;
   display: flex;
   
@@ -95,6 +95,9 @@ h1 {
   text-transform: capitalize;
   flex-wrap: nowrap;
   border-radius: 4px;
+}
+button {
+  background-color: darkcyan;
 }
 
 #chartContainer {
