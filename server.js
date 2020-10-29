@@ -26,7 +26,8 @@ app.route('/api')
     console.log('GET request detected');
     res.send(`Lab 5 for ${process.env.NAME}`);
   })
-  .post(async(req, res) => {
+  .post(async (req, res) => {
+    console.log('POST request detected');
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json'); // Can move this into get request to see if it's working
     const json = await data.json();
     res.json(json);
