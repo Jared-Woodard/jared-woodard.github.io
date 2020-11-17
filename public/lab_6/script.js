@@ -11,11 +11,10 @@ function range(int) {
   return arr;
 }
 
-// sortFucntion(b, a) <- decending sort 
-function sortFunction(a, b, key) {
-  if (a[key] < b[key]) {
+function sortFunction(org, comparison, key) {
+  if (org[key] < comparison[key]) {
     return -1;
-  } if (a[key] > b[key]) {
+  } if (org[key] > comparison[key]) {
     return 1;
   }
   return 0;
@@ -31,6 +30,7 @@ function map(s1, s2) {
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray(); // here we're using jQuery to serialize the form
+  // set fave to yes
   fetch('/api', {
     method: 'POST',
     headers: {
@@ -56,9 +56,8 @@ document.body.addEventListener('submit', async (e) => {
 
       reverselist.forEach((element, i) => {
         const li = document.createElement('li');
-        $(li).append(`<input type = "checkbox" value =${element.code} id = ${element.code} />`)
-        $(li).append(`<label for = ${element.code}> ${element.name}</label>`)
-        
+        $(li).append(`<input type = "checkbox" value =${element.code} id = ${element.code} />`);
+        $(li).append(`<label for = ${element.code}> ${element.name}</label>`);
         // This is what I was doing before and it mostly worked.
         /* li.innerHTML = '<input type = "checkbox"/>';
         li.setAttribute('value', element.code);
@@ -72,5 +71,8 @@ document.body.addEventListener('submit', async (e) => {
       console.log(arr);
       console.log('Test');
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err)
+      // set fave to no
+    });
 });
